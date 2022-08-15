@@ -19,7 +19,8 @@ function getComputerChoice() {
 // Request choice from user, require it to be some form of rock, paper or scissors, ask until valid choice is given
 function getPlayerChoice() {
     let playerSelection;
-    while (playerSelection !== 'Rock' && playerSelection !== 'Paper' && playerSelection !== 'Scissors') {
+
+    do {
         playerSelection = prompt('Choose your weapon! (Rock, Paper or Scissors)');
 
         // Check if selection is null or '', if so alert user of error
@@ -39,6 +40,7 @@ function getPlayerChoice() {
             alert("That's not a valid weapon!");
         }
     }
+    while (playerSelection !== 'Rock' && playerSelection !== 'Paper' && playerSelection !== 'Scissors');
 
     return playerSelection;
 }
@@ -61,7 +63,6 @@ function playRound(playerSelection, computerSelection) {
 
 // Play a 5 round game that keeps score and reports a winner/loser at each game and at the end
 function game() {
-    // set up score counters at 0 for each player
     let playerScore = 0;
     let computerScore = 0;
 
