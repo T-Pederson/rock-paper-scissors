@@ -49,14 +49,14 @@ function getPlayerChoice() {
 // Compares player's selection against computer's selection and returns the result
 function playRound(playerSelection, computerSelection) {
     // compare playerSelection vs computerSelection and return the result
-    if (playerSelection === 'Rock' && computerSelection === 'Rock' || playerSelection === 'Paper' && computerSelection === 'Paper' || playerSelection === 'Scissors' && computerSelection === 'Scissors') {
-        return 0;
+    if (playerSelection === 'Rock' && computerSelection === 'Scissors' || playerSelection === 'Paper' && computerSelection === 'Rock' || playerSelection === 'Scissors' && computerSelection === 'Paper') {
+        return 'win';
     }
-    else if (playerSelection === 'Rock' && computerSelection === 'Scissors' || playerSelection === 'Paper' && computerSelection === 'Rock' || playerSelection === 'Scissors' && computerSelection === 'Paper') {
-        return 1;
+    else if (playerSelection === 'Rock' && computerSelection === 'Paper' || playerSelection === 'Paper' && computerSelection === 'Scissors' || playerSelection === 'Scissors' && computerSelection === 'Rock') {
+        return 'lose';
     }
     else {
-        return 2;
+        return 'tie';
     }
 }
 
@@ -66,18 +66,18 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
 
-    // loop through 5 games, keeping track of score, repeat tie rounds
+    // loop through 5 games
     for (let i = 0; i < 5; i++) {
         playerSelection = getPlayerChoice();
         computerSelection = getComputerChoice();
 
         let result = playRound(playerSelection, computerSelection);
-        if (result === 1) {
+        if (result === 'win') {
             playerScore++;
             console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
             console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore}`);
         }
-        else if (result === 2) {
+        else if (result === 'lose') {
             computerScore++;
             console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
             console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore}`);
@@ -86,6 +86,17 @@ function game() {
             console.log(`It's a Tie!`);
             console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore}`);
         }
+    }
+
+    // After 5 games, print overall winner
+    if (playerScore > computerScore) {
+        console.log("CONGRATULATIONS! YOU WON!");
+    }
+    else if (playerScore < computerScore) {
+        console.log("You lost. You suck bruh...");
+    }
+    else {
+        console.log("It's a tie.")
     }
 }
 
