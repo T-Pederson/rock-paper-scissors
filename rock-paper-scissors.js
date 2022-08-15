@@ -1,6 +1,5 @@
 // generate a random choice of rock, paper or scissors for the computer
 function getComputerChoice() {
-    
     // generate randomNumber 0, 1 or 2
     const randomNumber = Math.floor(Math.random() * 3);
     
@@ -30,12 +29,28 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+// Play a 5 round game that keeps score and reports a winner/loser at each game and at the end
 function game() {
-    // call playRound to play a 5 round game that keeps score and reports a winner/loser at the end
-    // At this point console.log is used to display the results of each round and the winner at the end
-    // Use prompt() to get input from the user
-}
+    // Request choice from user, require it to be some form of rock, paper or scissors, ask until valid choice is given
+    let playerSelection;
+    while (playerSelection !== 'Rock' && playerSelection !== 'Paper' && playerSelection !== 'Scissors') {
+        playerSelection = prompt('Choose your weapon! (Rock, Paper or Scissors)');
 
-let computerSelection = getComputerChoice();
-console.log(computerSelection);
-console.log(playRound('Rock', computerSelection));
+        // Check if selection is null or '', if so alert user of error
+        if (playerSelection === null || playerSelection === '') {
+            alert("That's not a valid weapon!");
+            continue;
+        }
+        
+        // Convert player selection to format 'Rock' 'Paper' or 'Scissors'
+        playerSelection = playerSelection.toLowerCase();
+        playerSelection = playerSelection.split('');
+        playerSelection[0] = playerSelection[0].toUpperCase();
+        playerSelection = playerSelection.join(''); 
+
+        // Check if selection is 'Rock', 'Paper', or 'Scissors', if not alert user of error
+        if (playerSelection !== 'Rock' && playerSelection !== 'Paper' && playerSelection !== 'Scissors') {
+            alert("That's not a valid weapon!");
+        }
+    }
+}
