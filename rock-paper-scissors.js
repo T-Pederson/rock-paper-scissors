@@ -65,9 +65,10 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let playerScore = 0;
     let computerScore = 0;
+    console.log('First to 5 points wins')
 
-    // loop through 5 games
-    for (let i = 0; i < 5; i++) {
+    // loop through games until first to 5 points
+    while (playerScore < 5 && computerScore < 5) {
         playerSelection = getPlayerChoice();
         computerSelection = getComputerChoice();
 
@@ -76,19 +77,22 @@ function game() {
             playerScore++;
             console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
             console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore}`);
+            console.log('\n');
         }
         else if (result === 'lose') {
             computerScore++;
             console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
-            console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore}`);
+            console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore} \n`);
+            console.log('\n');
         }
         else {
             console.log(`It's a Tie!`);
-            console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore}`);
+            console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore} \n`);
+            console.log('\n');
         }
     }
 
-    // After 5 games, print overall winner
+    // After someone gets 5 points, print overall winner
     if (playerScore > computerScore) {
         console.log("CONGRATULATIONS! YOU WON!");
     }
