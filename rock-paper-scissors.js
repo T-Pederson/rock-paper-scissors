@@ -3,36 +3,31 @@ function getComputerChoice() {
     
     // generate randomNumber 0, 1 or 2
     const randomNumber = Math.floor(Math.random() * 3);
-    let computerSelection;
     
-    // for randomNumber, 1 = rock, 2 = paper, 3 = scissors
+    // return rock, paper or scissors based on randomNumber
     if (randomNumber === 0) {
-        return computerSelection = 'rock';
+        return 'Rock';
     }
     else if (randomNumber === 1) {
-        return computerSelection = 'paper';
+        return 'Paper';
     }
     else {
-        return computerSelection = 'scissors';
+        return 'Scissors';
     }
 }
 
+// Compares player's selection against computer's selection and returns the result
 function playRound(playerSelection, computerSelection) {
-    // should take 2 parameters, playerSelection and computerSelection
-    // return a string to declare winner like so "You Lose! Paper beats rock"
-        // return result, do not console.log here
-    // Make playerSelection work case-insensitively (rock, Rock, RocK etc.)
-
-    // if ((playerSelection = rock && computerSelection = rock) || ), return 'It's a tie!'
-    // else if (playerSelection = rock && computerSelection = paper), return 'It's a tie!'
-    // else if (playerSelection = rock && computerSelection = rock), return 'It's a tie!'
-    // else if (playerSelection = rock && computerSelection = rock), return 'It's a tie!'
-    // else if (playerSelection = rock && computerSelection = rock), return 'It's a tie!'
-    // else if (playerSelection = rock && computerSelection = rock), return 'It's a tie!'
-    // else if (playerSelection = rock && computerSelection = rock), return 'It's a tie!'
-    // else if (playerSelection = rock && computerSelection = rock), return 'It's a tie!'
-    // else if (playerSelection = rock && computerSelection = rock), return 'It's a tie!'
-
+    // compare playerSelection vs computerSelection and return the result
+    if (playerSelection === 'Rock' && computerSelection === 'Rock' || playerSelection === 'Paper' && computerSelection === 'Paper' || playerSelection === 'Scissors' && computerSelection === 'Scissors') {
+        return "It's a tie!";
+    }
+    else if (playerSelection === 'Rock' && computerSelection === 'Scissors' || playerSelection === 'Paper' && computerSelection === 'Rock' || playerSelection === 'Scissors' && computerSelection === 'Paper') {
+        return `You win! ${playerSelection} beats ${computerSelection}!`;
+    }
+    else {
+        return `You lose! ${computerSelection} beats ${playerSelection}!`;
+    }
 }
 
 function game() {
@@ -41,5 +36,6 @@ function game() {
     // Use prompt() to get input from the user
 }
 
-
-console.log(getComputerChoice());
+let computerSelection = getComputerChoice();
+console.log(computerSelection);
+console.log(playRound('Rock', computerSelection));
