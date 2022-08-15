@@ -67,7 +67,7 @@ function game() {
     let computerScore = 0;
     console.log('First to 5 points wins')
 
-    // loop through games until first to 5 points
+    // loop through games until first to 5 points, show winner at each round
     while (playerScore < 5 && computerScore < 5) {
         playerSelection = getPlayerChoice();
         computerSelection = getComputerChoice();
@@ -76,20 +76,17 @@ function game() {
         if (result === 'win') {
             playerScore++;
             console.log(`You win! ${playerSelection} beats ${computerSelection}!`);
-            console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore}`);
-            console.log('\n');
         }
         else if (result === 'lose') {
             computerScore++;
             console.log(`You lose! ${computerSelection} beats ${playerSelection}!`);
-            console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore} \n`);
-            console.log('\n');
         }
         else {
             console.log(`It's a Tie!`);
-            console.log(`Your Score: ${playerScore}  Computer's Score: ${computerScore} \n`);
-            console.log('\n');
         }
+
+        // show current scoreboard
+        console.log(`Your Score: ${playerScore} Computer's Score: ${computerScore}\n\n`);
     }
 
     // After someone gets 5 points, print overall winner
