@@ -89,12 +89,12 @@ button {
     }
 
     .container {
-        gap: 50px;
-        margin: 50px 0;
+        gap: 25px;
+        margin: 20px 0;
     }
     
     .choiceContainer {
-        gap: 20px;
+        gap: 10px;
     }
 
     button {
