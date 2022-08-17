@@ -21,10 +21,7 @@ for (const choice of Array.from(computerChoices)) {
 
 // Generate a random choice of rock, paper or scissors for the computer
 function getComputerChoice() {
-    // Generate randomNumber 0, 1 or 2
     const randomNumber = Math.floor(Math.random() * 3);
-    
-    // Return rock, paper or scissors based on randomNumber
     if (randomNumber === 0) {
         return 'rock';
     }
@@ -39,27 +36,23 @@ function getComputerChoice() {
 
 // Compares player's selection against computer's selection and returns the result
 function playRound(playerSelection, computerSelection) {
-    // Generate a computer selection and pull player selection from button that was clicked
     computerSelection = getComputerChoice();
     playerSelection = playerSelection.currentTarget.getAttribute("class");
 
     // Add cool highlight effect to both choices to give the user an idea on what was chosen
     
-    // compare playerSelection vs computerSelection and return the result
+    // If player wins, add 1 to player's score and output result
     if (playerSelection === 'rock' && computerSelection === 'scissors' || playerSelection === 'paper' && computerSelection === 'rock' || playerSelection === 'scissors' && computerSelection === 'paper') {
-        // update player1's score counter +1
         document.querySelector(".playerScore").innerText = parseInt(document.querySelector(".playerScore").innerText) + 1;
-        // change bottom text to outcome showing player won
         document.querySelector("p").innerText = `You win! ${playerSelection} beats ${computerSelection}!`;
     }
+    // If computer wins, add 1 to computer's score and output result
     else if (playerSelection === 'rock' && computerSelection === 'paper' || playerSelection === 'paper' && computerSelection === 'scissors' || playerSelection === 'scissors' && computerSelection === 'rock') {
-        // update computer's score counter +1
         document.querySelector(".computerScore").innerText = parseInt(document.querySelector(".computerScore").innerText) + 1;
-        // change bottom text to outcome showing computer won
         document.querySelector("p").innerText = `You lose! ${computerSelection} beats ${playerSelection}!`;
     }
+    // If tie, just output result
     else {
-        // change bottom text to outcome showing tie
         document.querySelector("p").innerText = `It's a Tie!`;
     }
 }
