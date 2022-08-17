@@ -1,9 +1,21 @@
-// generate a random choice of rock, paper or scissors for the computer
+// When user clicks one of their choices, run playRound
+// playRound will then update the text below to the outcome and update the score
+// if either score is 5, display the winner and a reset button and end the game
+
+
+// Warn player if they try to select the computer's option
+const computerChoices = document.getElementsByClassName("computerChoices");
+for (const choice of computerChoices) {
+    choice.addEventListener("click", () => alert("You dirty little cheater"));
+}
+
+
+// Generate a random choice of rock, paper or scissors for the computer
 function getComputerChoice() {
-    // generate randomNumber 0, 1 or 2
+    // Generate randomNumber 0, 1 or 2
     const randomNumber = Math.floor(Math.random() * 3);
     
-    // return rock, paper or scissors based on randomNumber
+    // Return rock, paper or scissors based on randomNumber
     if (randomNumber === 0) {
         return 'Rock';
     }
@@ -67,7 +79,7 @@ function game() {
     let computerScore = 0;
     console.log('First to 5 points wins')
 
-    // loop through games until first to 5 points, show winner at each round
+    // Loop through games until first to 5 points, show winner at each round
     while (playerScore < 5 && computerScore < 5) {
         playerSelection = getPlayerChoice();
         computerSelection = getComputerChoice();
@@ -85,7 +97,7 @@ function game() {
             console.log(`It's a Tie!`);
         }
 
-        // show current scoreboard
+        // Show current scoreboard
         console.log(`Your Score: ${playerScore} Computer's Score: ${computerScore}\n\n`);
     }
 
@@ -102,16 +114,3 @@ function game() {
 }
 
 // game();
-
-
-
-
-// getComputerChoice
-    // good
-
-// getPlayerChoice
-    // return the class value of the button that was clicked on
-
-// playRound
-    // playRound should run everytime a button is clicked (addEventListener outside of function)
-    // 
