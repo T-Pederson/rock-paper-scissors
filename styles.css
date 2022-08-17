@@ -1,0 +1,48 @@
+body {
+    font-family: 'Silkscreen', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 72px;
+    margin: 40px 0 0 0;
+}
+
+p {
+    font-size: 36px;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    gap: 150px;
+    margin: 150px 0;
+}
+
+.choiceContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    font-size: 24px;
+}
+
+button {
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+button img {
+    border: 3px solid black;
+    border-radius: 25px;
+    height: 150px;
+    transition: all .15s ease-in-out;
+}
+
+.playerChoices button img:hover {
+    scale: 1.05;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}

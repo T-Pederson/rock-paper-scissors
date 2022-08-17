@@ -101,4 +101,17 @@ function game() {
     }
 }
 
-game();
+// game();
+
+
+
+
+// getComputerChoice
+    // good
+
+// getPlayerChoice
+    // return the class value of the button that was clicked on
+
+// playRound
+    // playRound should run everytime a button is clicked (addEventListener outside of function)
+    // 
