@@ -1,15 +1,20 @@
-// When user clicks one of their choices, run playRound and checkEndGame
+// When user clicks one of their choices, play a round and check if either player won
 const playerChoices = document.querySelectorAll(".playerChoices button");
-for (const choice of Array.from(playerChoices)) {
+for (const choice of playerChoices) {
     choice.addEventListener("click", playRound);
     choice.addEventListener("click", checkEndGame);
 }
 
-
 // Warn player if they try to select the computer's option
 const computerChoices = document.querySelectorAll(".computerChoices button");
-for (const choice of Array.from(computerChoices)) {
-    choice.addEventListener("click", () => alert("That's not yours, idiot"));
+for (const choice of computerChoices) {
+    choice.addEventListener("click", cheater);
+}
+
+
+// Helper function to warn player if they try to select the computer's option
+function cheater() {
+    alert("That's not yours, idiot");
 }
 
 
@@ -30,29 +35,30 @@ function getComputerChoice() {
 
 // Compares player's selection against computer's selection and returns the result
 function playRound(playerSelection, computerSelection) {
-    // Remove all permanent highlights
+    // Remove all highlights
     const allButtons = document.querySelectorAll(".rock, .paper, .scissors");
-    for (const button of Array.from(allButtons)) {
+    for (const button of allButtons) {
         button.classList.remove("highlightrock", "highlightpaper", "highlightscissors");
     }
 
+    // Get both player's choices and current scores
     computerSelection = getComputerChoice();
     playerSelection = playerSelection.currentTarget.getAttribute("class");
+    computerScore = document.querySelector(".computerScore")
+    playerScore = document.querySelector(".playerScore")
 
-    // Highlight computers choice
+    // Highlight both player's choices
     document.querySelector(".computerChoices " + "." + computerSelection).classList.add("highlight" + computerSelection)
-
-    // Maintain highlight on player's choice
     document.querySelector(".playerChoices " + "." + playerSelection).classList.add("highlight" + playerSelection)
     
     // If player wins, add 1 to player's score and output result
     if (playerSelection === 'rock' && computerSelection === 'scissors' || playerSelection === 'paper' && computerSelection === 'rock' || playerSelection === 'scissors' && computerSelection === 'paper') {
-        document.querySelector(".playerScore").innerText = parseInt(document.querySelector(".playerScore").innerText) + 1;
+        playerScore.innerText = parseInt(playerScore.innerText) + 1;
         document.querySelector("p").innerText = `You win! ${playerSelection} beats ${computerSelection}!`;
     }
     // If computer wins, add 1 to computer's score and output result
     else if (playerSelection === 'rock' && computerSelection === 'paper' || playerSelection === 'paper' && computerSelection === 'scissors' || playerSelection === 'scissors' && computerSelection === 'rock') {
-        document.querySelector(".computerScore").innerText = parseInt(document.querySelector(".computerScore").innerText) + 1;
+        computerScore.innerText = parseInt(computerScore.innerText) + 1;
         document.querySelector("p").innerText = `You lose! ${computerSelection} beats ${playerSelection}!`;
     }
     // If tie, just output result
@@ -70,22 +76,62 @@ function checkEndGame() {
     const computerScore = document.querySelector(".computerScore").innerText
 
     if (playerScore === '5' || computerScore === '5') {
-        // Disable event listeners on buttons
-        for (const choice of Array.from(playerChoices)) {
-            choice.removeEventListener("click", playRound);
-        }
-
         // Change bottom text to represent outcome
         if (playerScore > computerScore) {
             document.querySelector("p").innerText = `CONGRATULATIONS! YOU WON!`;
         }
         else {
-            document.querySelector("p").innerText = `Bruh, you suck...`;
+            document.querySelector("p").innerText = `You lose, try again!`;
         }
 
         // Add a reset button
+        const reset = document.createElement("button");
+        const node = document.createTextNode("Reset");
+        reset.appendChild(node);
+        reset.classList.add("reset");
+        const element = document.querySelector(".footer");
+        element.appendChild(reset);
+        reset.addEventListener("click", newGame);
 
+        // Disable all event listeners on buttons
+        for (const choice of playerChoices) {
+            choice.removeEventListener("click", playRound);
+            choice.removeEventListener("click", checkEndGame);
+        }
+        for (const choice of computerChoices) {
+            choice.removeEventListener("click", cheater);
+        }
     }
 
     return;
 }
+
+
+// Reset game if reset button is clicked
+function newGame() {
+    // Re-enable event listeners on playerChoices
+    const playerChoices = document.querySelectorAll(".playerChoices button");
+    for (const choice of playerChoices) {
+        choice.addEventListener("click", playRound);
+        choice.addEventListener("click", checkEndGame);
+    }
+
+    // Change bottom text to original text
+    document.querySelector("p").innerText = `First to 5 wins!`;
+
+    // Change both scores to 0
+    document.querySelector(".playerScore").innerText = "0";
+    document.querySelector(".computerScore").innerText = "0";
+    
+    // Remove reset button
+    document.querySelector(".reset").remove();
+
+    // Remove all highlights
+    const allButtons = document.querySelectorAll(".rock, .paper, .scissors");
+    for (const button of allButtons) {
+        button.classList.remove("highlightrock", "highlightpaper", "highlightscissors");
+    }
+
+    return;
+}
+
