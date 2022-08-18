@@ -44,6 +44,7 @@ button {
     padding: 0;
     width: 150px;
     height: 150px;
+    color: black;
 }
 
 .rock {
@@ -143,5 +144,4 @@ button {
         width: 110px;
         height: 110px;
     }
-
 }

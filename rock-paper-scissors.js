@@ -109,11 +109,15 @@ function checkEndGame() {
 
 // Reset game if reset button is clicked
 function newGame() {
-    // Re-enable event listeners on playerChoices
+    // Re-enable event listeners on choices
     const playerChoices = document.querySelectorAll(".playerChoices button");
     for (const choice of playerChoices) {
         choice.addEventListener("click", playRound);
         choice.addEventListener("click", checkEndGame);
+    }
+    const computerChoices = document.querySelectorAll(".computerChoices button");
+    for (const choice of computerChoices) {
+        choice.addEventListener("click", cheater);
     }
 
     // Change bottom text to original text
