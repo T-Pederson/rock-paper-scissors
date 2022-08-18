@@ -77,11 +77,29 @@ button {
     background-image: linear-gradient(0deg, rgba(255, 255, 0, 0.3), rgba(255, 255, 0, 0.3)), url('images/scissors.png');
 }
 
-@media only screen and (max-width:600px) {
+.highlightrock {
+    scale: 1.05;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    background-image: linear-gradient(0deg, rgba(255, 255, 0, 0.3), rgba(255, 255, 0, 0.3)), url('images/rock.png');
+}
+
+.highlightpaper {
+    scale: 1.05;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    background-image: linear-gradient(0deg, rgba(255, 255, 0, 0.3), rgba(255, 255, 0, 0.3)), url('images/paper.png');
+}
+
+.highlightscissors {
+    scale: 1.05;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    background-image: linear-gradient(0deg, rgba(255, 255, 0, 0.3), rgba(255, 255, 0, 0.3)), url('images/scissors.png');
+}
+
+@media only screen and (max-width:985px) {
     * {
         touch-action: manipulation;
     }
-    
+
     h1 {
         font-size: 48px;
         margin: 0;
@@ -95,6 +113,7 @@ button {
     .container {
         gap: 25px;
         margin: 20px 0;
+        flex-direction: column;
     }
     
     .choiceContainer {

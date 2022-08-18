@@ -36,11 +36,20 @@ function getComputerChoice() {
 
 // Compares player's selection against computer's selection and returns the result
 function playRound(playerSelection, computerSelection) {
+    // Remove all permanent highlights
+    const allButtons = document.querySelectorAll(".rock, .paper, .scissors");
+    for (const button of Array.from(allButtons)) {
+        button.classList.remove("highlightrock", "highlightpaper", "highlightscissors");
+    }
+
     computerSelection = getComputerChoice();
     playerSelection = playerSelection.currentTarget.getAttribute("class");
 
     // Highlight computers choice
-    console.log(document.querySelector(".computerChoices " + "." + computerSelection));
+    document.querySelector(".computerChoices " + "." + computerSelection).classList.add("highlight" + computerSelection)
+
+    // Maintain highlight on player's choice
+    document.querySelector(".playerChoices " + "." + playerSelection).classList.add("highlight" + playerSelection)
     
     // If player wins, add 1 to player's score and output result
     if (playerSelection === 'rock' && computerSelection === 'scissors' || playerSelection === 'paper' && computerSelection === 'rock' || playerSelection === 'scissors' && computerSelection === 'paper') {
