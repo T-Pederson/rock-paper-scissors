@@ -1,7 +1,8 @@
-// When user clicks one of their choices, run playRound
+// When user clicks one of their choices, run playRound and endGame to check if game is over
 const playerChoices = document.querySelectorAll(".playerChoices button");
 for (const choice of Array.from(playerChoices)) {
     choice.addEventListener("click", playRound);
+    choice.addEventListener("click", endGame);
 }
 
 
@@ -12,11 +13,10 @@ for (const choice of Array.from(computerChoices)) {
 }
 
 
-// If either score is 5, display the winner and a reset button and end the game
-    // Change display completely, only showing scores, outcome and reset button (no rps buttons)
-
-
-// If reset button is pressed, reset page completely to scores at 0 and bottom text to original
+// If reset button is pressed, reset the scores
+    // Re-enable event listeners on playerChoices
+    // Change bottom text to original text
+    // Remove reset button
 
 
 // Generate a random choice of rock, paper or scissors for the computer
@@ -65,4 +65,33 @@ function playRound(playerSelection, computerSelection) {
     else {
         document.querySelector("p").innerText = `It's a Tie!`;
     }
+
+    return;
+}
+
+
+// Check if either score is 5 and end the game if so
+function endGame() {
+    const playerScore = document.querySelector(".playerScore").innerText;
+    const computerScore = document.querySelector(".computerScore").innerText
+
+    if (playerScore === '5' || computerScore === '5') {
+        // Disable event listeners on buttons
+        for (const choice of Array.from(playerChoices)) {
+            choice.removeEventListener("click", playRound);
+        }
+
+        // Change bottom text to represent outcome
+        if (playerScore > computerScore) {
+            document.querySelector("p").innerText = `CONGRATULATIONS! YOU WON!`;
+        }
+        else {
+            document.querySelector("p").innerText = `Bruh, you suck...`;
+        }
+
+        // Add a reset button
+        
+    }
+
+    return;
 }
