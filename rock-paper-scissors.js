@@ -39,7 +39,8 @@ function playRound(playerSelection, computerSelection) {
     computerSelection = getComputerChoice();
     playerSelection = playerSelection.currentTarget.getAttribute("class");
 
-    // Add cool highlight effect to both choices to give the user an idea on what was chosen
+    // Highlight computers choice
+    console.log(document.querySelector(".computerChoices " + "." + computerSelection));
     
     // If player wins, add 1 to player's score and output result
     if (playerSelection === 'rock' && computerSelection === 'scissors' || playerSelection === 'paper' && computerSelection === 'rock' || playerSelection === 'scissors' && computerSelection === 'paper') {
