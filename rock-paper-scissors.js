@@ -1,8 +1,8 @@
-// When user clicks one of their choices, run playRound and endGame to check if game is over
+// When user clicks one of their choices, run playRound and checkEndGame
 const playerChoices = document.querySelectorAll(".playerChoices button");
 for (const choice of Array.from(playerChoices)) {
     choice.addEventListener("click", playRound);
-    choice.addEventListener("click", endGame);
+    choice.addEventListener("click", checkEndGame);
 }
 
 
@@ -11,12 +11,6 @@ const computerChoices = document.querySelectorAll(".computerChoices button");
 for (const choice of Array.from(computerChoices)) {
     choice.addEventListener("click", () => alert("That's not yours, idiot"));
 }
-
-
-// If reset button is pressed, reset the scores
-    // Re-enable event listeners on playerChoices
-    // Change bottom text to original text
-    // Remove reset button
 
 
 // Generate a random choice of rock, paper or scissors for the computer
@@ -71,7 +65,7 @@ function playRound(playerSelection, computerSelection) {
 
 
 // Check if either score is 5 and end the game if so
-function endGame() {
+function checkEndGame() {
     const playerScore = document.querySelector(".playerScore").innerText;
     const computerScore = document.querySelector(".computerScore").innerText
 
@@ -90,7 +84,7 @@ function endGame() {
         }
 
         // Add a reset button
-        
+
     }
 
     return;
